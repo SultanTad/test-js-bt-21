@@ -1,9 +1,7 @@
-const divRoot = document.querySelectorAll(".wrapper");
+const divRoot = document.querySelector(".wrapper");
 
-divRoot.forEach((item) => {
-  
-  item.innerHTML += "<button class='start-btn'>Начать</button>";
-  item.innerHTML += `
+divRoot.innerHTML += `
+  <button class='start-btn'>Начать</button>
   <div class='popup-shadow'></div>
   <div class='popup-wrapper'>
   <img
@@ -22,49 +20,34 @@ divRoot.forEach((item) => {
   </form>
   </div>
   `;
-  const popupShadow = document.querySelectorAll(".popup-shadow");
-  const popupWrapper = document.querySelectorAll(".popup-wrapper");
-  const popupCloseBtn = document.querySelectorAll(".popup__close-btn");
-  const startBtn = document.querySelectorAll(".start-btn");
-  const sendBtn = document.querySelectorAll(".send");
-  const allInputs = document.querySelectorAll("input");
-  const dataFromInputs = {};
+const popupShadow = document.querySelector(".popup-shadow");
+const popupWrapper = document.querySelector(".popup-wrapper");
+const popupCloseBtn = document.querySelector(".popup__close-btn");
+const startBtn = document.querySelector(".start-btn");
+const sendBtn = document.querySelector(".send");
+const allInputs = document.querySelectorAll("input");
+const dataFromInputs = {};
 
-  startBtn.forEach((item) => {
-    item.addEventListener("click", () => {
-        console.log(item.innerHTML);
-      popupShadow.forEach((shadow) => shadow.classList.add("active_shadow"));
-      popupWrapper.forEach((wrapper) => wrapper.classList.add("active_window"));
-      document.body.style.overflow = "hidden";
-    });
-  });
-  popupCloseBtn.forEach((item) => {
-    item.addEventListener("click", () => {
-      popupShadow.forEach((shadow) => shadow.classList.remove("active_shadow"));
-      popupWrapper.forEach((wrapper) =>
-        wrapper.classList.remove("active_window")
-      );
-      document.body.style.overflow = "inherit";
-    });
-  });
-  popupShadow.forEach((shadow) => {
-    shadow.addEventListener("click", () => {
-      shadow.classList.remove("active_shadow");
-      popupWrapper.forEach((wrapper) =>
-        wrapper.classList.remove("active_window")
-      );
-      document.body.style.overflow = "inherit";
-    });
-  });
-
-  sendBtn.forEach((item) => {
-    item.addEventListener("click", () => {
-      allInputs.forEach((input) => {
-        let key = input.name;
-        dataFromInputs[key] = input.value;
-      });
-    });
+startBtn.addEventListener("click", () => {
+  popupShadow.classList.add("active_shadow");
+  popupWrapper.classList.add("active_window");
+  document.body.style.overflow = "hidden";
+});
+popupCloseBtn.addEventListener("click", () => {
+  popupShadow.classList.remove("active_shadow");
+  popupWrapper.classList.remove("active_window");
+  document.body.style.overflow = "inherit";
+});
+popupShadow.addEventListener("click", () => {
+  popupShadow.classList.remove("active_shadow");
+  popupWrapper.classList.remove("active_window");
+  document.body.style.overflow = "inherit";
 });
 
-
+sendBtn.addEventListener("click", () => {
+  allInputs.forEach((input) => {
+    let key = input.name;
+    dataFromInputs[key] = input.value;
+  });
+  divRoot.innerHTML += `<div>${dataFromInputs.name}</div>`;
 });
