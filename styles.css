@@ -1,0 +1,75 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+button {
+  background-color: rgb(54, 106, 220);
+  padding: 16px 30px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-family: "Mulish";
+  font-size: 18px;
+  line-height: 23px;
+  cursor: pointer;
+}
+
+input {
+  padding: 16px 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  font-size: 16px;
+  font-family: "Mulish";
+  line-height: 20px;
+  border: none;
+}
+
+.popup-shadow {
+  background: rgba(0, 0, 0, 0.63);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.popup-shadow.active_shadow {
+  z-index: 999;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s ease-in-out;
+}
+
+.popup-wrapper {
+  max-width: 500px;
+  width: 100%;
+  min-height: 430px;
+  background-color: rgb(243, 243, 246);
+  border-radius: 40px;
+  padding: 20px;
+  position: absolute;
+  z-index: 1000;
+  color: rgb(40, 40, 44);
+  display: none;
+}
+
+.popup-wrapper.active_window {
+  display: block;
+}
