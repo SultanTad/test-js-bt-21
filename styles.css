@@ -13,9 +13,11 @@ html {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  flex-direction: column;
 }
 
-button {
+button,
+.send {
   background-color: rgb(54, 106, 220);
   padding: 16px 30px;
   border: none;
@@ -73,3 +75,20 @@ input {
 .popup-wrapper.active_window {
   display: block;
 }
+
+.input-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+form {
+  text-align: center;
+}
+
+form h2 {
+  margin-bottom: 20px;
+}
+

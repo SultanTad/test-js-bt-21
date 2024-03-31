@@ -11,12 +11,14 @@ divRoot.innerHTML += `
   />
   <form>
   <h2>Заполните Форму!</h2>
+  <div class='input-wrapper'>
   <input type="text" placeholder="Введите Имя" name='name'/>
   <input type="text" placeholder="Введите Фамилию" name='sername'/>
   <input type="text" placeholder="Введите номер телефона" name='phone_number'/>
   <input type="text" placeholder="Введите Ваш никнейм" name='nickname'/>
   <input type="email" placeholder="Введите Вашу почту" name='email'/>
-  <button class='send'>отправить</button>
+  </div>
+  <input type="submit" class='send' value='отправить'>
   </form>
   </div>
   `;
@@ -26,7 +28,6 @@ const popupCloseBtn = document.querySelector(".popup__close-btn");
 const startBtn = document.querySelector(".start-btn");
 const sendBtn = document.querySelector(".send");
 const allInputs = document.querySelectorAll("input");
-const dataFromInputs = {};
 
 startBtn.addEventListener("click", () => {
   popupShadow.classList.add("active_shadow");
@@ -44,10 +45,14 @@ popupShadow.addEventListener("click", () => {
   document.body.style.overflow = "inherit";
 });
 
-sendBtn.addEventListener("click", () => {
+sendBtn.addEventListener("click", (event) => {
+  event.preventDefault();
   allInputs.forEach((input) => {
-    let key = input.name;
-    dataFromInputs[key] = input.value;
+    divRoot.innerHTML += `<div>${JSON.stringify(input.value)}</div>`;
   });
-  divRoot.innerHTML += `<div>${dataFromInputs.name}</div>`;
+  console.log(popupShadow);
+  console.log(popupWrapper);
+  document.querySelector(".popup-shadow").classList.remove("active_shadow");
+  document.querySelector(".popup-wrapper").classList.remove("active_window");
+  document.body.style.overflow = "inherit";
 });
